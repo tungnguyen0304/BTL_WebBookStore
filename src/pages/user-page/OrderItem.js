@@ -1,6 +1,6 @@
 import React from 'react';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import { Link } from 'react-router-dom';
 
 const imgStyle = {
@@ -10,10 +10,12 @@ const imgStyle = {
     minWidth: '100%',
     width: '100px',
 }
+
 const bookTitleStyle = {
     fontSize: "20px",
     fontWeight: "bold"
 }
+
 const subtotalStyle = {
     color: '#C0203D',
     fontWeight: "bold",
@@ -34,13 +36,16 @@ export default function OrderItems({ product }) {
                             <img src={product.image} style={imgStyle} alt="product" />
                         </Link>
                     </Grid>
+
                     <Grid container item xs>
                         <Grid item>
                             <div>
                                 <div style={bookTitleStyle}>
                                     {product.name}
                                 </div>
+
                                 <div>Số lượng: {product.qty}</div>
+
                                 <div style={subtotalStyle}>{VNCurrencyFormatter.format(product.subtotal)}</div>
                             </div>
                         </Grid>

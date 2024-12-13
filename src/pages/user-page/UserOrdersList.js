@@ -1,6 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
 import {
   Table,
   TableBody,
@@ -15,7 +12,10 @@ import {
   Typography,
   Paper,
 } from '@mui/material';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { ListAlt } from '@mui/icons-material';
+import React, { useState, useEffect } from 'react';
 import Meta from "../../components/Meta";
 import Container from '../../components/Container';
 
@@ -45,6 +45,7 @@ const UserOrdersList = () => {
   return (
     <>
       <Meta title="Đơn hàng của bạn" />
+
       <Container class1="home-wrapper-2 py-3">
         <Grid container justifyContent="center" sx={{ mb: 2 }}>
           <Typography variant="h4" fontWeight="bold" color="primary">
@@ -58,15 +59,21 @@ const UserOrdersList = () => {
               <TableHead>
                 <TableRow sx={{ backgroundColor: "#f4f6f8" }}>
                   <TableCell sx={{ fontWeight: 'bold', color: "#333" }}>ID</TableCell>
+
                   <TableCell sx={{ fontWeight: 'bold', color: "#333" }}>Tên người nhận hàng</TableCell>
+
                   <TableCell sx={{ fontWeight: 'bold', color: "#333" }}>Thời gian đặt hàng</TableCell>
+
                   <TableCell sx={{ fontWeight: 'bold', color: "#333" }}>Tổng tiền</TableCell>
+
                   <TableCell sx={{ fontWeight: 'bold', color: "#333" }}>Trạng thái</TableCell>
+
                   <TableCell sx={{ fontWeight: 'bold', color: "#333" }} width="150px" align="center">
                     Thao tác
                   </TableCell>
                 </TableRow>
               </TableHead>
+
               <TableBody>
                 {currentOrders.map((order) => (
                   <TableRow
@@ -77,11 +84,15 @@ const UserOrdersList = () => {
                     }}
                   >
                     <TableCell>{order.ID}</TableCell>
+
                     <TableCell>{order.name}</TableCell>
+
                     <TableCell>{order.order_datetime}</TableCell>
+
                     <TableCell>
                       {new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(order.total)}
                     </TableCell>
+
                     <TableCell>
                       <Typography
                         variant="body2"
@@ -93,6 +104,7 @@ const UserOrdersList = () => {
                         {order.status === 1 ? "Đã nhận hàng" : "Đang giao hàng"}
                       </Typography>
                     </TableCell>
+
                     <TableCell align="center">
                       <Tooltip title="Xem nội dung đơn hàng">
                         <Link to={`/orders/order?id=${order.ID}`}>
@@ -106,6 +118,7 @@ const UserOrdersList = () => {
                 ))}
               </TableBody>
             </Table>
+
             <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
               <Pagination
                 color="primary"

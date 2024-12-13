@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from "axios";
-import BreadCrumb from "../../components/BreadCrumb";
 import Meta from "../../components/Meta";
-import ProductCard from "../../components/ProductCard";
 import Container from "../../components/Container";
+import BreadCrumb from "../../components/BreadCrumb";
+import ProductCard from "../../components/ProductCard";
 
 const Checkbox = ({ isChecked, label, checkHandler, index }) => {
   return (
@@ -244,7 +244,7 @@ const OurStore = () => {
                   {categoriesList.map(category =>
                     <li key={category.ID} className="mb-1">
                       <a href={"/category/" + category.unique_name}
-                        style={{ fontSize: "1.3rem"}}>
+                        style={{ fontSize: "1.3rem" }}>
                         {category.name}
                       </a>
                     </li>

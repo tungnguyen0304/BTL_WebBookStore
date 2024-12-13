@@ -6,18 +6,18 @@ import {
   increaseInLocalCart,
 } from "../../utils/setCartLocal";
 import { Link } from "react-router-dom";
-import { Tooltip, Box, Card, TextField, Button, CardContent, Avatar, Divider } from "@mui/material";
 import { useSelector } from "react-redux";
-import { IconButton, Typography, } from "@mui/material";
 import ReactImageZoom from "react-image-zoom";
 import React, { useEffect, useState } from "react";
 import ReactStars from "react-rating-stars-component";
+import { IconButton, Typography, } from "@mui/material";
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
+import { Tooltip, Box, Card, TextField, Button, CardContent, Avatar, Divider } from "@mui/material";
 import Meta from "../../components/Meta";
 import Container from "../../components/Container";
 import BreadCrumb from "../../components/BreadCrumb";
-import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 
 function getUniqueNameFromUrl(url) {
   // Split the URL string by the '/' character
@@ -29,8 +29,10 @@ function getUniqueNameFromUrl(url) {
   // Return the unique name
   return uniqueName;
 }
+
 function isInteger(str) {
   if (typeof str != "string") return false; // we only process strings!
+
   return (
     !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
     !isNaN(parseInt(str))
@@ -68,6 +70,7 @@ const SingleProduct = () => {
     event.preventDefault();
 
     const trimmedReview = review.trim();
+
     if (!trimmedReview) {
       setReviewError("Vui lòng nhập nội dung đánh giá.");
       return;
@@ -182,15 +185,18 @@ const SingleProduct = () => {
               </div>
             </div>
           </div>
+
           <div className="col-sm-12 col-md-6 col-lg-6">
             <div className="main-product-details">
               <div className="border-bottom">
                 <h3 className="title">{product.name}</h3>
               </div>
+
               <div className="border-bottom py-3">
                 <p className="price">
                   {VNCurrencyFormatter.format(product.price)}
                 </p>
+
                 <div className="d-flex align-items-center gap-10">
                   <ReactStars
                     count={5}
@@ -199,41 +205,56 @@ const SingleProduct = () => {
                     edit={false}
                     activeColor="#ffd700"
                   />
+
                   <p className="mb-0 t-review">
                     ({allReviews.length} đánh giá)
                   </p>
                 </div>
+
                 <a className="review-btn" href="#review">
                   Viết đánh giá
                 </a>
               </div>
+
               <div className=" py-3">
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Tác giả:</h3>
+
                   <p className="product-data">{product.author_name}</p>
                 </div>
+
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">NXB/NSX:</h3>
+
                   <p className="product-data">{product.manufacturer_name}</p>
                 </div>
+
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Thể loại:</h3>
+
                   <p className="product-data">{product.category_name}</p>
                 </div>
+
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Số lượng còn lại:</h3>
+
                   <p className="product-data">{product.current_qty}</p>
                 </div>
+
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Số lượng đã bán:</h3>
+
                   <p className="product-data">{product.sold_qty}</p>
                 </div>
+
                 <div className="d-flex gap-10 align-items-center my-2">
                   <h3 className="product-heading">Trạng thái:</h3>
+
                   <p className="product-data">
                     {product.in_stock ? "Còn hàng" : "Ngừng kinh doanh"}
                   </p>
                 </div>
+
                 <div className="d-flex align-items-center gap-15 flex-row mt-3 mb-2">
                   {qty > 0 ? (
                     <div className="">
@@ -244,7 +265,9 @@ const SingleProduct = () => {
                       >
                         <RemoveCircleOutlineIcon />
                       </IconButton>
+
                       <span>{qty}</span>
+
                       <IconButton
                         aria-label="Add button"
                         size="small"
@@ -315,6 +338,7 @@ const SingleProduct = () => {
               <Typography variant="h6" mb={2}>
                 Viết đánh giá
               </Typography>
+
               <form onSubmit={handleSubmitReview}>
                 <Box mb={2} display="flex" justifyContent="center">
                   <ReactStars
@@ -325,6 +349,7 @@ const SingleProduct = () => {
                     activeColor="#ffd700"
                   />
                 </Box>
+
                 <TextField
                   fullWidth
                   multiline
@@ -337,6 +362,7 @@ const SingleProduct = () => {
                   variant="outlined"
                   sx={{ mb: 2 }}
                 />
+
                 <Button
                   type="submit"
                   variant="contained"
@@ -352,6 +378,7 @@ const SingleProduct = () => {
               <Typography variant="body1" color="textSecondary">
                 Bạn phải đăng nhập để bình luận
               </Typography>
+
               <Link to="/login" style={{ textDecoration: "none" }}>
                 <Button variant="contained" color="primary" sx={{ mt: 1 }}>
                   Đăng nhập
@@ -375,6 +402,7 @@ const SingleProduct = () => {
                     <Avatar sx={{ bgcolor: "primary.main" }}>
                       {review.username ? review.username[0] : "?"}
                     </Avatar>
+
                     <Box>
                       <Typography variant="subtitle1" fontWeight="bold">
                         {review.username || "Người dùng ẩn"}
@@ -384,6 +412,7 @@ const SingleProduct = () => {
                           </Tooltip>
                         )}
                       </Typography>
+
                       <Typography variant="body2" color="textSecondary">
                         {review.comment_datetime
                           ? new Date(review.comment_datetime).toLocaleString("vi-VN")
@@ -391,7 +420,9 @@ const SingleProduct = () => {
                       </Typography>
                     </Box>
                   </Box>
+
                   <Divider sx={{ my: 2 }} />
+
                   <ReactStars
                     count={5}
                     size={20}
@@ -399,6 +430,7 @@ const SingleProduct = () => {
                     edit={false}
                     activeColor="#ffd700"
                   />
+
                   <Typography variant="body1" sx={{ mt: 1 }}>
                     {review.content || "Nội dung không có sẵn"}
                   </Typography>

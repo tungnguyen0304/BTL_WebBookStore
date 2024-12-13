@@ -7,18 +7,18 @@ import {
   Button,
   Paper,
 } from "@mui/material";
-import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ConfirmDialog from "../../components/ConfirmDialog";
-import { useNavigate, Link } from "react-router-dom";
-import Meta from "../../components/Meta";
 import {
   checkValidName,
   checkValidEmail,
   checkValidPhoneNumber,
 } from "../../utils/FormUtil";
 import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import Meta from "../../components/Meta";
 import Container from "../../components/Container";
+import ConfirmDialog from "../../components/ConfirmDialog";
 
 const EditProfile = () => {
   const userRole = useSelector((state) => state.userRole);
@@ -55,12 +55,16 @@ const EditProfile = () => {
     );
 
     const errors = {};
+
     if (!checkValidName(trimmedInfo.name))
       errors.name = "Tên không được trống và ít hơn 50 ký tự";
+
     if (trimmedInfo.email && !checkValidEmail(trimmedInfo.email))
       errors.email = "Email không hợp lệ";
+
     if (trimmedInfo.phone && !checkValidPhoneNumber(trimmedInfo.phone))
       errors.phone = "SĐT không hợp lệ";
+
     if (trimmedInfo.address.length > 255)
       errors.address = "Địa chỉ tối đa 255 ký tự";
 
@@ -83,6 +87,7 @@ const EditProfile = () => {
   return (
     <>
       <Meta title="Chỉnh sửa hồ sơ" />
+
       {userRole !== "" ? (
         <Container class1="home-wrapper-2 py-3">
           <Box display="flex" justifyContent="center" alignItems="center" minHeight="75vh">
@@ -180,6 +185,7 @@ const EditProfile = () => {
                   >
                     Lưu
                   </Button>
+
                   <Button
                     variant="outlined"
                     color="error"
@@ -209,7 +215,9 @@ const EditProfile = () => {
       ) : (
         <Box className="text-center text-muted" py={5}>
           Bạn phải đăng nhập trước.
+
           <br />
+
           <Link to="/login">Đăng nhập</Link>
         </Box>
       )}

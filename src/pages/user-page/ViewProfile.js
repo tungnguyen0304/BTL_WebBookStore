@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -10,14 +10,14 @@ import {
   Typography,
   Box,
 } from "@mui/material";
-import Meta from "../../components/Meta";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Container from "../../components/Container";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import HomeIcon from "@mui/icons-material/Home";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
-import HomeIcon from "@mui/icons-material/Home";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Meta from "../../components/Meta";
+import Container from "../../components/Container";
 
 const ViewProfile = () => {
   const userRole = useSelector((state) => state.userRole);
@@ -45,6 +45,7 @@ const ViewProfile = () => {
   return (
     <div>
       <Meta title="Hồ sơ của bạn" />
+
       {userRole !== "" ? (
         <>
           <Container class1="home-wrapper-2 py-3">
@@ -59,36 +60,50 @@ const ViewProfile = () => {
                     <TableRow>
                       <TableCell>
                         <AccountCircleIcon color="primary" />
+
                         <strong> Username:</strong>
                       </TableCell>
+
                       <TableCell>{Profile.username}</TableCell>
                     </TableRow>
+
                     <TableRow>
                       <TableCell>
                         <AccountCircleIcon color="primary" />
+
                         <strong> Tên:</strong>
                       </TableCell>
+
                       <TableCell>{Profile.name}</TableCell>
                     </TableRow>
+
                     <TableRow>
                       <TableCell>
                         <EmailIcon color="secondary" />
+
                         <strong> Email:</strong>
                       </TableCell>
+
                       <TableCell>{Profile.email}</TableCell>
                     </TableRow>
+
                     <TableRow>
                       <TableCell>
                         <PhoneIcon color="success" />
+
                         <strong> SĐT:</strong>
                       </TableCell>
+
                       <TableCell>{Profile.phone}</TableCell>
                     </TableRow>
+
                     <TableRow>
                       <TableCell>
                         <HomeIcon color="action" />
+
                         <strong> Địa chỉ:</strong>
                       </TableCell>
+
                       <TableCell>{Profile.address}</TableCell>
                     </TableRow>
                   </TableBody>
@@ -108,7 +123,9 @@ const ViewProfile = () => {
       ) : (
         <Box className="text-center text-muted" py={5}>
           Bạn phải đăng nhập trước
+
           <br />
+
           <Link to="/login">Đăng nhập</Link>
         </Box>
       )}

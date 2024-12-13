@@ -1,11 +1,11 @@
-import { React, useState, useEffect } from 'react';
 import axios from 'axios';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
+import { React, useState, useEffect } from 'react';
 import OrderItems from './OrderItem';
 
 export default function Order() {
@@ -47,12 +47,8 @@ export default function Order() {
       });
   }, []);
 
-  const orderStatus =
-    orderGeneralInfo.status === 1 ? 'Đã nhận hàng' : 'Đang giao hàng';
-  const orderStatusStyle =
-    orderGeneralInfo.status === 0
-      ? { color: '#4caf50', fontWeight: 'bold' }
-      : { color: '#ff9800', fontWeight: 'bold' };
+  const orderStatus = orderGeneralInfo.status === 1 ? 'Đã nhận hàng' : 'Đang giao hàng';
+  const orderStatusStyle = orderGeneralInfo.status === 0 ? { color: '#4caf50', fontWeight: 'bold' } : { color: '#ff9800', fontWeight: 'bold' };
 
   const VNCurrencyFormatter = new Intl.NumberFormat('vi', {
     style: 'currency',
@@ -65,6 +61,7 @@ export default function Order() {
         <Typography variant="h4" color="primary" fontWeight="bold" gutterBottom>
           Đơn hàng
         </Typography>
+
         <Divider sx={{ mb: 2 }} />
 
         {Object.keys(orderGeneralInfo).length !== 0 ? (
@@ -75,22 +72,30 @@ export default function Order() {
                 <Typography variant="body1">
                   <strong>Mã số đơn hàng: </strong> {orderGeneralInfo.ID}
                 </Typography>
+
                 <Typography variant="body1">
                   <strong>Người đặt hàng: </strong> {orderGeneralInfo.name}
                 </Typography>
+
                 <Typography variant="body1">
                   <strong>Số điện thoại: </strong> {orderGeneralInfo.phone}
                 </Typography>
+
                 <Typography variant="body1">
                   <strong>Địa chỉ nhận hàng: </strong>{' '}
+
                   {orderGeneralInfo.address}
                 </Typography>
+
                 <Typography variant="body1">
                   <strong>Ngày đặt hàng: </strong>{' '}
+
                   {orderGeneralInfo.order_datetime}
                 </Typography>
+
                 <Typography variant="body1">
                   <strong>Trạng thái đơn hàng: </strong>
+
                   <span style={orderStatusStyle}>{orderStatus}</span>
                 </Typography>
               </Grid>
@@ -108,7 +113,9 @@ export default function Order() {
                   >
                     Sản phẩm trong đơn hàng
                   </Typography>
+
                   <Divider sx={{ mb: 2 }} />
+
                   <Stack spacing={2}>
                     {order.map(product => (
                       <OrderItems key={product.ID} product={product} />
@@ -129,16 +136,20 @@ export default function Order() {
                 >
                   <Typography variant="body1" align="right">
                     <strong>Thành tiền: </strong>
+
                     {VNCurrencyFormatter.format(
                       orderGeneralInfo.total - orderGeneralInfo.delivery_cost
                     )}
                   </Typography>
+
                   <Typography variant="body1" align="right">
                     <strong>Phí vận chuyển: </strong>
+
                     {VNCurrencyFormatter.format(
                       orderGeneralInfo.delivery_cost
                     )}
                   </Typography>
+
                   <Typography
                     variant="h6"
                     align="right"
